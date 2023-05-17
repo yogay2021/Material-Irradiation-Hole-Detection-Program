@@ -19,6 +19,7 @@ for num_data2 in range(len(data_pre)):
     data_pres.append(json.loads(data_pre[num_data2]))
 
 rectangle = []
+# 输出到指定的txt文件中
 with open("E:\\DeskTop\\photo\\bubble\\dataset\\labels\\10.txt", "w") as file:
     for numd in range(len(data_pres)):
 
