@@ -3,35 +3,23 @@
 #### 介绍
 2023年初，计算机视觉与材料工程学科交叉科研项目，代码归档
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
+#### 代码架构
+##### 1.match_main.py
+此文件是框架主体，实现对材料孔洞的初步识别，输出判别的矩形标注框，其格式参考yolo数据集txt标签。
+框架基本思路是经sauvola算法二值化处理之后，用霍夫变换初筛可能的圆。
+在此基础上，将霍夫变换获取的圆经过均值等处理后作为模板信息。
+对全局进行匹配搜索，获得匹配值矩阵，映射回原图坐标得到孔洞位置。
+其余包括标注框去重、匹配阈值迭代等具体细节见代码。
+###### 2.calculate_avgbub.py 
+此文件用于计算出此张图中孔洞的平均半径
+###### 3.calculate_iou.py
+根据既有的测试集对检测结果进行量化分析，导入测试集以及预测数据
+测试集总数先默认算FN(理解为全部没找出来)，预测总数先默认算FP(理解为全部找错了)
+嵌套循环，每一个预测数据与所有的测试集求iou，取出max，
+max与设置的iou阈值进行比较，判正一个 +TP -FP -FN，
+计算precision, recall, F1-score，详细细节见代码
 #### 使用说明
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
