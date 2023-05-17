@@ -1,3 +1,7 @@
+'''
+此脚本实现将圆心半径的标注格式转换为标准的yolo矩形标注格式
+'''
+
 import cv2
 import json
 
